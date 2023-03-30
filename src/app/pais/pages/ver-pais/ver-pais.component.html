@@ -1,0 +1,50 @@
+<div *ngIf="!pais && !error else divPais"
+        class="alert alert-info">
+    Espere un momento...
+</div>
+<div *ngIf="error"
+        class="alert alert-danger">
+    No existe el país...
+</div>
+
+<ng-template #divPais>
+    <div class="row">
+        <div class="col-12">
+            <h2>Pais: <small>{{pais.name.common}}</small></h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <h3>Bandera</h3>
+            <img [src]="pais.flags.png" class="img-thumbnail" [alt]="pais.name.common">
+        </div>
+        <div class="col">
+            <h3>Información:</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <strong>Población: </strong> {{pais.population | number}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Área: </strong> {{pais.area | number}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Lenguaje: </strong> {{pais.languages.spa}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Capital: </strong> {{pais.capital}}
+                </li>
+                <li class="list-group-item">
+                    <strong>FIFA: </strong> {{pais.fifa}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <br>
+    <h3>Fronteras</h3>
+    <div class="row">
+        <div class="col">
+            <span class="badge bg-primary mr-1" *ngFor="let item of pais.borders"> <h4>{{item}}</h4> </span>
+        </div>
+    </div>
+    
+</ng-template>
